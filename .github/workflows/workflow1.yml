@@ -15,7 +15,8 @@ jobs:
         with:
           owner: TestCrossRepoOrg
           repo: repo2
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          #github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PAT }}
           workflow_file_name: workflow2.yml
           ref: main
           wait_interval: 60
