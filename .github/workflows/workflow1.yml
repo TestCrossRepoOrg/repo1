@@ -1,0 +1,23 @@
+name: Workflow1
+
+on: [push]
+jobs:
+  list-all-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: list all files
+        run: ls -r
+
+      - name: trigger repo2 workflow 2
+        uses: convictional/trigger-workflow-and-wait@v1.3.0
+        with:
+          owner: TestCrossRepoOrg
+          repo: repo2
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow_file_name: workflow2.yml
+          ref: main
+          wait_interval: 60
+          propagate_failure: true
+          wait_workflow: true
